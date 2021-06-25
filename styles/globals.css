@@ -1,0 +1,9 @@
+
+.site-description:not(:empty):before {
+  content: "\2014";
+  margin: 0 .2em;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
