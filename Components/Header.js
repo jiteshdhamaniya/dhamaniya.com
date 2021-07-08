@@ -7,7 +7,7 @@ export default function Header() {
             <Head>
                 <title>Jitesh Dhamaniya - Life, Philosophy, Science.</title>
                 <meta name="description" content="Personal Blog By Jitesh Dhamaniya" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="shortcut icon" href="http://www.gravatar.com/avatar/c670ffedd4b69670b45d0ceae7f71cfa?s=16" />
             </Head>
 
             <div className="text-2xl flex items-center"> 
