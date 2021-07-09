@@ -31,9 +31,14 @@ export default function Home(props) {
             props.stories.map((item,i)=>
             <div key={i} className=" p-5 rounded space-y-2">
                         <h3 className="text-3xl">{item.name}</h3>
-                        <p className="font-serif font-thin text-lg leading-7">
+                        <div
+                            dangerouslySetInnerHTML={{
+                              __html: marked(item.content.intro)
+                            }}></div>
+
+                        {/* <p className="font-serif font-thin text-lg leading-7">
                             {parser(marked(item.content.intro))}
-                        </p>                
+                        </p>                 */}
                 </div>
             )
         }        
