@@ -13,7 +13,7 @@ export default function Header() {
 
             <div className="text-2xl flex items-center mb-10"> 
                 <Link href="/">
-                    <div className="flex">
+                    <div className="flex cursor-pointer">
                         <span> Jitesh Dhamaniya </span>
                         <span className="site-description text-gray-500 font-serif font-thin">Life, Philosophy, Science. </span> 
                     </div>   

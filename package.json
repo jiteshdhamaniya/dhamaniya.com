@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.2",
     "contentful": "^8.4.2",
     "date-and-time": "^1.0.1",
     "html-to-react": "^1.4.5",

@@ -4,16 +4,41 @@ import marked from 'marked';
 // The Storyblok Client
 import Storyblok from '../../../../lib/storyblok';
 import Header from "../../../../Components/Header";
- 
+
+import { ClockIcon } from '@heroicons/react/solid'
+import { ClockIcon as ClockLineIcon } from '@heroicons/react/outline'
+import date from 'date-and-time';
+
 export default function Post(props) {
+
+    const published_date = date.format(new Date(props.story.first_published_at), 'ddd, MMM DD, YYYY'); 
+    const last_updated = date.format(new Date(props.story.published_at), 'ddd, MMM DD, YYYY'); 
 
   return (
     <div>
-      <Header />       
+        <Header />      
+        <Head>
+            <div id="fb-root"></div>            
+        </Head>       
       <header>
         <h1 className="text-5xl font-bold py-4 hover:text-gray-700">
                 {props.story.name}
         </h1>
+
+        <div className="flex space-x-4">
+
+         <div className="flex space-x-2 items-center">
+            <ClockIcon className="h-5 w-5 text-gray-400"/> 
+            <p> { published_date } </p>
+         </div>
+
+         <div className="flex space-x-2 items-center">
+            <ClockLineIcon className="h-5 w-5 text-gray-400"/> 
+            <p> { last_updated } </p>
+         </div>
+
+         </div>
+
 
       </header>
  
@@ -27,13 +52,19 @@ export default function Post(props) {
 
 
       </main>
+
+      <div 
+      className="fb-comments" 
+      data-href="http://localhost:3000/2021/07/09/what-is-future-if-time-travel-is-possible" 
+      data-width="" 
+      data-numposts="5">
+      </div>
+
     </div>
   )
 }
  
 export async function getServerSideProps(ctx) {
-
-    console.log( ctx.query );
 
   // the slug of the story
   let slug = `article/${ctx.query.slug}`;

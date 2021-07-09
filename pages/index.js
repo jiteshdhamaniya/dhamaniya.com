@@ -9,11 +9,12 @@ import Link from 'next/link';
 
 import date from 'date-and-time';
 
+import { ClockIcon } from '@heroicons/react/solid'
+import { ClockIcon as ClockLineIcon } from '@heroicons/react/outline'
+
+
 export default function Home(props) {
 
-  function getURL(slug){
-    return 
-  }
 
   return (
     <div>
@@ -26,10 +27,18 @@ export default function Home(props) {
                 { 
                  return (<div key={i} className=" p-5 rounded space-y-2 leading-9">
                             <Link href={item.url}>
-                              <h3 className="text-5xl font-bold py-4 hover:text-gray-700">
+                              <div>
+                              <h3 className="text-5xl font-bold py-4 hover:text-gray-700 cursor-pointer">
                                 {item.name}
-                              </h3>                              
+                              </h3>
+                              <div className="flex space-x-2 items-center">
+                                <ClockLineIcon className="h-5 w-5 text-gray-400"/> 
+                                <p> { date.format(new Date(props.story.first_published_at), 'ddd, MMM DD, YYYY') } </p>
+                            </div>
+                              </div> 
+                                                           
                             </Link>
+                              
                             <div
                             className="font-serif text-xl leading-9"
                             dangerouslySetInnerHTML={{
@@ -77,12 +86,12 @@ export async function getStaticProps(context) {
   // loads the story from the Storyblok API
   let { data } = await Storyblok.get(`cdn/stories/${slug}`, params)
 
-  const _data  = await Storyblok.get(`cdn/stories/?filter_query[component][in]=article`);
+  const _data  = await Storyblok.get(`cdn/stories/?filter_query[component][in]=article&sort_by=first_published_at:desc`);
 
   let stories = _data.data.stories;
 
   stories = stories.map((item, i)=>{
-      const archive = date.format(new Date(item.published_at), 'YYYY/MM/DD'); 
+      const archive = date.format(new Date(item.first_published_at), 'YYYY/MM/DD'); 
       item.url = `${archive}/${item.slug}`;
       return item;
   })
