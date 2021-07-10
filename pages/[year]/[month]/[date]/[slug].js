@@ -5,9 +5,8 @@ import marked from 'marked';
 import Storyblok from '../../../../lib/storyblok';
 import Header from "../../../../Components/Header";
 
-import { ClockIcon } from '@heroicons/react/solid'
-import { ClockIcon as ClockLineIcon } from '@heroicons/react/outline'
 import date from 'date-and-time';
+import Meta from "../../../../Components/Meta";
 
 export default function Post(props) {
 
@@ -21,36 +20,16 @@ export default function Post(props) {
             <div id="fb-root"></div>            
         </Head>       
       <header>
-        <h1 className="text-5xl font-bold py-4 hover:text-gray-700">
-                {props.story.name}
-        </h1>
-
-        <div className="flex space-x-4">
-
-         <div className="flex space-x-2 items-center">
-            <ClockIcon className="h-5 w-5 text-gray-400"/> 
-            <p> { published_date } </p>
-         </div>
-
-         <div className="flex space-x-2 items-center">
-            <ClockLineIcon className="h-5 w-5 text-gray-400"/> 
-            <p> { last_updated } </p>
-         </div>
-
-         </div>
-
-
+        <h1 className="text-5xl font-bold py-4"> {props.story.name} </h1>
+        <Meta published_date={published_date} last_updated={last_updated} />
       </header>
- 
-      <main>            
-             
-                            <div
-                            className="font-serif text-xl leading-9"
-                            dangerouslySetInnerHTML={{
-                              __html: marked(props.story.content.long_text)
-                            }}></div>
 
-
+      <main>                         
+            <div
+            className="font-serif text-xl leading-9"
+            dangerouslySetInnerHTML={{
+            __html: marked(props.story.content.long_text)
+            }}></div>
       </main>
 
       <div 
