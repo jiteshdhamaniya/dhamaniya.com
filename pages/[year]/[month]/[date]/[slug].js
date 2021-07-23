@@ -16,9 +16,6 @@ export default function Post(props) {
   return (
     <div>
         <Header />      
-        <Head>
-            <div id="fb-root"></div>            
-        </Head>       
       <header>
         <h1 className="text-5xl font-bold py-4"> {props.story.name} </h1>
         <Meta published_date={published_date} last_updated={last_updated} />
@@ -31,14 +28,13 @@ export default function Post(props) {
             __html: marked(props.story.content.long_text)
             }}></div>
       </main>
-
+      <div id="fb-root"></div>            
       <div 
       className="fb-comments" 
-      data-href="http://localhost:3000/2021/07/09/what-is-future-if-time-travel-is-possible" 
-      data-width="" 
-      data-numposts="5">
+      data-href="https://developers.facebook.com/docs/plugins/comments#configurator" 
+      data-width="100" 
+      data-numposts="5">        
       </div>
-
     </div>
   )
 }
