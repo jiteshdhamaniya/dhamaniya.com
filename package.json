@@ -3,20 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5000",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.2",
+    "@keystone-next/document-renderer": "^4.0.0",
     "axios": "^0.21.1",
     "date-and-time": "^1.0.1",
+    "graphql-request": "^3.5.0",
     "marked": "^2.1.3",
     "next": "11.0.1",
     "nextjs-progressbar": "^0.0.11",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "storyblok-js-client": "^4.1.3"
+    "storyblok-js-client": "^4.1.3",
+    "swr": "^0.5.6"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
