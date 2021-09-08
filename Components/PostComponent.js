@@ -5,6 +5,8 @@ import date from 'date-and-time';
 
 import { DocumentRenderer } from '@keystone-next/document-renderer';
 
+import componentBlockRenderers from './componentBlockRenderers';
+
 export default function PostComponent(props) {
 
   const year = date.format(new Date(props.post.publishDate), 'YYYY');
@@ -28,7 +30,10 @@ export default function PostComponent(props) {
                             </Link>
 
                             <div className="font-serif text-xl leading-10 text-gray-700">
-                              <DocumentRenderer document={props.post.content.document} />
+                              <DocumentRenderer 
+                              document={props.post.content.document}
+                              componentBlocks={componentBlockRenderers}                              
+                              />
                             </div>
 
                             <div className="pt-5 link">
