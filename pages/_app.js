@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
       height={3}
       showOnShallow={true}
     />
-      <div className="container max-w-[1024px] m-auto my-14 antialiased px-4 md:px-0"> 
+      <div className="container max-w-[1024px] m-auto my-14 antialiased px-2"> 
       <Component {...pageProps} />
       <Footer />
      </div>
