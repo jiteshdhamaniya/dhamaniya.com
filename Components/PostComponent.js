@@ -5,6 +5,10 @@ import date from 'date-and-time';
 
 import {decode} from 'html-entities';
 
+export function getWordStr(str,wordCount) {
+  return str.split(/\s+/).slice(0,wordCount).join(" ");
+}
+
 export default function PostComponent(props) {
 
   const year = date.format(new Date(props.post.date), 'YYYY');
@@ -12,10 +16,6 @@ export default function PostComponent(props) {
   const day = date.format(new Date(props.post.date), 'DD');
 
   const link = "/" + year + "/" + month + "/" + day + "/" + props.post.slug;
-
-  function getWordStr(str,wordCount) {
-      return str.split(/\s+/).slice(0,wordCount).join(" ");
-  }
 
   const excerpt = getWordStr(props.post.content.rendered,100);
 

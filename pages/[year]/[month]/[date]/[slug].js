@@ -15,6 +15,7 @@ import Header from "../../../../Components/Header";
 import date from 'date-and-time';
 
 import {decode} from 'html-entities';
+import { getWordStr } from "../../../../Components/PostComponent"
 
 const CommentBox = dynamic(() => import("../../../../Components/CommentFacebook"),{ ssr: false });
 
@@ -41,7 +42,10 @@ export default function Single() {
 
             <Header />  
             <Head>
-                <title>{title.rendered}</title>
+                <title>{title.rendered + ' ~ Jitesh Dhamaniya'}</title>
+                <meta name="title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                
+                <meta name="description" content={getWordStr(content, 70).replace(/(<([^>]+)>)/gi, "")} />                
+                <meta name="author" content="Jitesh Dhamaniya"></meta>
             </Head>   
           
             <div className="py-5 rounded space-y-2 leading-9">
