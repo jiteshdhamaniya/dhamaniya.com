@@ -54,9 +54,9 @@ export default function Single() {
                 <meta name="title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                
                 <meta name="description" content={getWordStr(content, 70).replace(/(<([^>]+)>)/gi, "")} />
                 <meta name="author" content="Jitesh Dhamaniya"></meta>
-                <meta name="og:title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                
-                <meta name="og:description" content={getWordStr(content, 70).replace(/(<([^>]+)>)/gi, "")} />
-                { featuredImage && <meta name="og:image" content={featuredImage} /> }  
+                <meta property="og:title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                
+                <meta property="og:description" content={getWordStr(content, 70).replace(/(<([^>]+)>)/gi, "")} />
+                { featuredImage && <meta property="og:image" content={featuredImage} /> }  
             </Head>   
           
             <div className="py-5 rounded space-y-2 leading-9">
