@@ -10,8 +10,10 @@ export default function Home(props) {
 
   const fetcher = url => fetch(url).then(r => r.json())
 
+  const url = process.env.NEXT_PUBLIC_BASE_URL+'posts/'
+
   const { data, error } = useSWR(    
-    process.env.NEXT_PUBLIC_BASE_URL,fetcher
+    url,fetcher
   );
   
     if (error) return <div>failed to load</div>
