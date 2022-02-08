@@ -33,8 +33,8 @@ export default function Single({ post }) {
    
      return <div> 
             <Header>
-                <title>{title.rendered + ' ~ Jitesh Dhamaniya'}</title>
-                <meta name="title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                
+                <title>{title.rendered} &#8211; Jitesh Dhamaniya</title>
+                <meta name="title" content={`${title.rendered} - Jitesh Dhamaniya`} />                                
                 <meta name="description" content={getWordStr(content, 70).replace(/(<([^>]+)>)/gi, "")} />
                 <meta name="author" content="Jitesh Dhamaniya"></meta>
                 <meta property="og:title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                

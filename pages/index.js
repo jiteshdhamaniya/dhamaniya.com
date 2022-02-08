@@ -7,8 +7,8 @@ export default function Home({posts}) {
   return (
     <div>
           <Header>
-                <title>A Personal Blog By Jitesh Dhamaniya</title>
-                <meta name="title" content='Personal Blog By Jitesh Dhamaniya' />                                
+                <title>Jitesh Dhamaniya &#8211; Life, Philosophy, Science.</title>
+                <meta name="title" content='Jitesh Dhamaniya - Life, Philosophy, Science.' />                                
                 <meta name="description" content='I share my personal thoughts and experiences here about Life, Philosophy, and Science.' />
                 <meta name="author" content="Jitesh Dhamaniya"></meta>
                 <meta property="og:title" content='A Personal Blog By Jitesh Dhamaniya' />                                
