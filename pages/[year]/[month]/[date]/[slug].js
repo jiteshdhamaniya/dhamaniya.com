@@ -26,30 +26,13 @@ const fetchMedia = (id) => {
 
 const fetcher = url => fetch(url).then(r => r.json())
 
-export default function Single() {
+export default function Single({ post }) {
 
-  const router = useRouter();
-  const slug = router.query.slug;
-
-  const [featuredImage, setFeaturedImage] = useState(false)
-
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}posts/?slug=${slug}`
-
-  const { data, error } = useSWR(url,fetcher);
-    
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>Loading...</div>
-
-    let post = data[0];
-    let { title, content, featured_media } = post;
-    content = content.rendered;
-     
-    fetchMedia(featured_media).then(data => setFeaturedImage(data))
-
+    let { title, content, featuredImage } = post;
+    content = content.rendered;    
+   
      return <div> 
-
-            <Header />  
-            <Head>
+            <Header>
                 <title>{title.rendered + ' ~ Jitesh Dhamaniya'}</title>
                 <meta name="title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                
                 <meta name="description" content={getWordStr(content, 70).replace(/(<([^>]+)>)/gi, "")} />
@@ -57,7 +40,7 @@ export default function Single() {
                 <meta property="og:title" content={title.rendered + ' ~ Jitesh Dhamaniya'} />                                
                 <meta property="og:description" content={getWordStr(content, 70).replace(/(<([^>]+)>)/gi, "")} />
                 { featuredImage && <meta property="og:image" content={featuredImage} /> }  
-            </Head>   
+            </Header>              
           
             <div className="py-5 rounded space-y-2 leading-9">
                               <div>
@@ -88,4 +71,31 @@ export default function Single() {
                     </div>            
         </div>
 }
- 
+
+// This function gets called at build time
+export async function getServerSideProps({query}) {
+
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}posts/?slug=${query.slug}`
+  let data = await fetch(url)
+  data = await data.json()
+  let post = data[0]
+  
+  const mediaId = post.featured_media
+
+  const mediaURL =  `${process.env.NEXT_PUBLIC_BASE_URL}media/${mediaId}`
+  let featured_media = await fetch(mediaURL)
+  featured_media = await featured_media.json()
+
+  const featuredImage = featured_media.source_url
+
+  post = { ...post, featuredImage }
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      post
+    },
+  }
+}
+
