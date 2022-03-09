@@ -26,7 +26,9 @@ const fetchMedia = (id) => {
 
 const fetcher = url => fetch(url).then(r => r.json())
 
-export default function Single({ post }) {
+export default function Single({post}) {
+
+  if(!post) return <></>
 
     let { title, content, featuredImage } = post;
     content = content.rendered;    
@@ -73,9 +75,13 @@ export default function Single({ post }) {
 }
 
 // This function gets called at build time
-export async function getServerSideProps({query}) {
+export async function getStaticProps(ctx) {
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
 
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}posts/?slug=${query.slug}`
+  const slug = ctx.params.slug
+
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}posts/?slug=${slug}`
   let data = await fetch(url)
   data = await data.json()
   let post = data[0]
@@ -90,8 +96,6 @@ export async function getServerSideProps({query}) {
 
   post = { ...post, featuredImage }
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
     props: {
       post
@@ -99,3 +103,31 @@ export async function getServerSideProps({query}) {
   }
 }
 
+export async function getStaticPaths() {
+
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}posts/`
+  let posts = await fetch(url)
+  posts = await posts.json()
+
+  const allPosts = []
+
+  posts = posts.map(async post => {
+
+      const year = date.format(new Date(post.date), 'YYYY');
+      const month = date.format(new Date(post.date), 'MM');
+      const date = date.format(new Date(post.date), 'DD');
+      const slug = post.slug
+
+      allPosts.push({ params: {
+        slug,
+        year,
+        month,
+        date
+      }})
+  })
+
+  return {
+    paths: allPosts,
+    fallback: true,
+  }
+}

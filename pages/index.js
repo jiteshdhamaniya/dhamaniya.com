@@ -21,7 +21,7 @@ export default function Home({posts}) {
 }
 
 // This function gets called at build time
-export async function getServerSideProps() {
+export async function getStaticProps() {
 
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}posts/`
   let posts = await fetch(url)
