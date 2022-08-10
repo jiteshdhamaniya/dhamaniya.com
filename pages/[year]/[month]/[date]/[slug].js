@@ -100,6 +100,7 @@ export async function getStaticProps(ctx) {
     props: {
       post
     },
+    revalidate: 10, // In seconds
   }
 }
 
