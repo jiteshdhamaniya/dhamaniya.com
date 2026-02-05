@@ -2,7 +2,7 @@ local_backend: true  # Enable local mode for testing
 
 backend:
   name: github
-  repo: jiteshdhamaniya/san-juan  # Update this to your actual repo
+  repo: jiteshdhamaniya/dhamaniya.com  # Update this to your actual repo
   branch: main
 
 media_folder: public/images/posts
