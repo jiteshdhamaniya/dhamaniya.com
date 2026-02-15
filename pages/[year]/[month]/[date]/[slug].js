@@ -66,7 +66,7 @@ export default function Single({post}) {
 // This function gets called at build time
 export async function getStaticProps(ctx) {
   const slug = ctx.params.slug
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug)
 
   if (!post) {
     return {
@@ -77,12 +77,13 @@ export async function getStaticProps(ctx) {
   return {
     props: {
       post
-    }
+    },
+    revalidate: 60
   }
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts()
+  const posts = await getAllPosts()
 
   const allPosts = posts.map(post => {
     const postDate = new Date(post.date)
@@ -102,6 +103,6 @@ export async function getStaticPaths() {
 
   return {
     paths: allPosts,
-    fallback: false
+    fallback: 'blocking'
   }
 }
