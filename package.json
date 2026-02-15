@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "@notionhq/client": "^2.3.0",
     "axios": "^0.21.4",
     "date-and-time": "^1.0.1",
     "gray-matter": "^4.0.3",
     "html-entities": "^2.3.2",
     "next": "^12.1.0",
+    "notion-to-md": "^3.1.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "^0.5.7",
