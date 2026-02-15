@@ -21,6 +21,18 @@ em{
   @apply font-serif text-xl  leading-10 text-gray-700
 }
 
+h1 {
+  @apply text-4xl font-bold my-6
+}
+
+h2 {
+  @apply text-3xl font-bold my-5
+}
+
+h3 {
+  @apply text-2xl font-bold my-4
+}
+
 blockquote {
   @apply pl-5 border-l
 }
