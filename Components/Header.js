@@ -18,9 +18,14 @@ export default function Header({children}) {
                         <span className="site-description text-gray-500 font-serif font-thin">Life, Philosophy, Science. </span> 
                     </div>   
                 </Link>
-                <a className="no-underline-link" href="https://twitter.com/JiteshDhamaniya" target="_blank">
-                    <img src="https://img.icons8.com/color/48/000000/twitter--v1.png"/>
-                </a>
+                <div className="flex items-center space-x-4">
+                    <Link href="/tools">
+                        <span className="text-base text-gray-500 hover:text-black cursor-pointer no-underline-link">Tools</span>
+                    </Link>
+                    <a className="no-underline-link" href="https://twitter.com/JiteshDhamaniya" target="_blank">
+                        <img src="https://img.icons8.com/color/48/000000/twitter--v1.png"/>
+                    </a>
+                </div>
             </div>
 
         </>            
